@@ -56,14 +56,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     print(completion?.choices);
-
-    Images? images = await chatGpt.generateImage(
-      request: const ImageRequest(
-        prompt: 'A cute baby sea otter',
-      ),
-    );
-
-    print(images?.data);
   }
 
   void imageGeneration() async {
@@ -73,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
-    print(images?.data);
+    print(images?.imageList);
   }
 
   @override
