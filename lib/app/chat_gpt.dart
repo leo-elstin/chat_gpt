@@ -1,8 +1,8 @@
-import 'package:chat_gpt/app/api/api.dart';
-import 'package:chat_gpt/app/model/data_model/completion/completion.dart';
-import 'package:chat_gpt/app/model/data_model/completion/completion_request.dart';
-import 'package:chat_gpt/app/model/data_model/image/image_request.dart';
-import 'package:chat_gpt/app/model/data_model/image/images.dart';
+import 'package:chat_gpt_api/app/api/api.dart';
+import 'package:chat_gpt_api/app/model/data_model/completion/completion.dart';
+import 'package:chat_gpt_api/app/model/data_model/completion/completion_request.dart';
+import 'package:chat_gpt_api/app/model/data_model/image/image_request.dart';
+import 'package:chat_gpt_api/app/model/data_model/image/images.dart';
 
 class ChatGPT {
   static final ChatGPT _singleton = ChatGPT._internal();

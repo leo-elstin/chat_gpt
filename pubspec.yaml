@@ -1,4 +1,4 @@
-name: chat_gpt
+name: chat_gpt_api
 description: Chat GPT wrapper for flutter apps
 version: 1.0.0
 homepage: https://github.com/leo-elstin/chat_gpt

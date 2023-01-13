@@ -1,5 +1,5 @@
-import 'package:chat_gpt/app/chat_gpt.dart';
-import 'package:chat_gpt/app/model/models.dart';
+import 'package:chat_gpt_api/app/chat_gpt.dart';
+import 'package:chat_gpt_api/app/model/models.dart';
 import 'package:dio/dio.dart';
 
 class Api {

@@ -1,5 +1,5 @@
-// import 'package:chat_gpt/app/model/data_model/completion/completion.dart';
-// import 'package:chat_gpt/app/model/data_model/completion/completion_request.dart';
+// import 'package:chat_gpt_api/app/model/data_model/completion/completion.dart';
+// import 'package:chat_gpt_api/app/model/data_model/completion/completion_request.dart';
 // import 'package:dio/dio.dart';
 // import 'package:mockito/mockito.dart';
 // import 'package:test/test.dart';

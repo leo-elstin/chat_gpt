@@ -1,4 +1,4 @@
-import 'package:chat_gpt/chat_gpt.dart';
+import 'package:chat_gpt_api/chat_gpt.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
