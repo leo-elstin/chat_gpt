@@ -1,12 +1,3 @@
-// To parse this JSON data, do
-//
-//     final imageRequest = imageRequestFromJson(jsonString);
-
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'image_request.freezed.dart';
-part 'image_request.g.dart';
-
 /// Request Body to generate image
 ///
 /// https://beta.openai.com/docs/api-reference/images/create
@@ -20,14 +11,12 @@ part 'image_request.g.dart';
 /// The size of the generated images. Must be one of 256x256, 512x512, or 1024x1024.
 ///
 
-@freezed
-class ImageRequest with _$ImageRequest {
-  const factory ImageRequest({
-    required String prompt,
-    @Default(1) int? n,
-    @Default('1024x1024') String? size,
-  }) = _ImageRequest;
+class ImageRequest {
+  final String prompt;
+  final int? n;
+  final String? size;
 
-  factory ImageRequest.fromJson(Map<String, dynamic> json) =>
-      _$ImageRequestFromJson(json);
+  ImageRequest({required this.prompt, this.n = 1, this.size = '1024x1024'});
+
+  Map<String, dynamic> toJson() => {"prompt": prompt, "n": n, "size": size};
 }

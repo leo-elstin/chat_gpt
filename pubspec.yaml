@@ -1,6 +1,7 @@
 name: chat_gpt_api
-description: Chat GPT wrapper for flutter apps
-version: 1.0.0
+description: Chat GPT wrapper for flutter apps witten in dart languange. 
+  Initial release supports Text Completeion, Code Completion and Image Generation
+version: 1.0.1
 homepage: https://github.com/leo-elstin/chat_gpt
 
 environment:
@@ -11,17 +12,12 @@ dependencies:
   flutter:
     sdk: flutter
   dio: ^4.0.6
-  freezed_annotation: ^2.2.0
-  json_annotation: ^4.7.0
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  build_runner: ^2.3.3
-  freezed: ^2.3.2
-  json_serializable: ^6.5.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,41 +1,97 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'dart:convert';
 
-part 'completion.freezed.dart';
-part 'completion.g.dart';
+class Completion {
+  final String? id;
+  final String? object;
+  final int? created;
+  final String? model;
+  final List<Choice>? choices;
+  final Usage? usage;
 
-@freezed
-class Completion with _$Completion {
-  const factory Completion({
-    String? id,
-    String? object,
-    int? created,
-    String? model,
-    List<Choice>? choices,
-    Usage? usage,
-  }) = _Completion;
+  Completion({
+    this.id,
+    this.object,
+    this.created,
+    this.model,
+    this.choices,
+    this.usage,
+  });
 
-  factory Completion.fromJson(Map<String, dynamic> json) =>
-      _$CompletionFromJson(json);
+  factory Completion.fromMap(Map<String, dynamic> json) {
+    return Completion(
+      id: json['id'],
+      object: json['object'],
+      created: json['created'],
+      model: json['model'],
+      usage: Usage.fromMap(
+        json['usage'],
+      ),
+      choices: List<Choice>.from(
+        json["choices"].map((x) => Choice.fromMap(x)),
+      ),
+    );
+  }
+
+  //
+  // String toJson() => json.encode(toMap());
+
+  // factory Completion.fromJson(String source) =>
+  //     Completion.fromMap(json.decode(source));
+
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "object": object,
+        "created": created,
+        "model": model,
+        "choices": List<dynamic>.from(choices!.map((x) => x.toMap())),
+        "usage": usage?.toMap(),
+      };
 }
 
-@freezed
-class Choice with _$Choice {
-  const factory Choice({
-    String? text,
-    int? index,
-    String? finishReason,
-  }) = _Choice;
+class Choice {
+  final String? text;
+  final int? index;
+  final String? finishReason;
 
-  factory Choice.fromJson(Map<String, dynamic> json) => _$ChoiceFromJson(json);
+  Choice({this.text, this.index, this.finishReason});
+
+  Map<String, dynamic> toMap() => {
+        "text": text,
+        "index": index,
+        "finish_reason": finishReason,
+      };
+
+  factory Choice.fromMap(Map<String, dynamic> json) {
+    return Choice(
+      text: json['text'],
+      index: json['index'],
+      finishReason: json['finish_reason'],
+    );
+  }
 }
 
-@freezed
-class Usage with _$Usage {
-  const factory Usage({
-    int? promptTokens,
-    int? completionTokens,
-    int? totalTokens,
-  }) = _Usage;
+class Usage {
+  final int? promptTokens;
+  final int? completionTokens;
+  final int? totalTokens;
 
-  factory Usage.fromJson(Map<String, dynamic> json) => _$UsageFromJson(json);
+  Usage({this.promptTokens, this.completionTokens, this.totalTokens});
+
+  factory Usage.fromMap(Map<String, dynamic> json) {
+    return Usage(
+      promptTokens: json['prompt_tokens'],
+      completionTokens: json['completion_tokens'],
+      totalTokens: json['total_tokens'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Usage.fromJson(String source) => Usage.fromMap(json.decode(source));
+
+  Map<String, dynamic> toMap() => {
+        "prompt_tokens": promptTokens,
+        "completion_tokens": completionTokens,
+        "total_tokens": totalTokens,
+      };
 }

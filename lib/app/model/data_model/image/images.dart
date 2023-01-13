@@ -1,24 +1,23 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class Images {
+  final int? created;
+  final List<ImageList>? data;
 
-part 'images.freezed.dart';
-part 'images.g.dart';
+  Images({this.created, this.data});
 
-@freezed
-class Images with _$Images {
-  const factory Images({
-    int? created,
-    @JsonKey(name: 'data') List<ImageList>? imageList,
-  }) = _Images;
-
-  factory Images.fromJson(Map<String, dynamic> json) => _$ImagesFromJson(json);
+  factory Images.fromJson(Map<String, dynamic> json) => Images(
+        data: List<ImageList>.from(
+          json['data'].map((x) => ImageList.fromJson(x)),
+        ),
+        created: json['created'],
+      );
 }
 
-@freezed
-class ImageList with _$ImageList {
-  const factory ImageList({
-    String? url,
-  }) = _ImageList;
+class ImageList {
+  final String? url;
 
-  factory ImageList.fromJson(Map<String, dynamic> json) =>
-      _$ImageListFromJson(json);
+  ImageList({this.url});
+
+  factory ImageList.fromJson(Map<String, dynamic> json) => ImageList(
+        url: json['url'],
+      );
 }

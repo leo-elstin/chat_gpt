@@ -16,15 +16,19 @@ class Api {
     required CompletionRequest request,
   }) async {
     String url = '$_baseUrl/completions';
-    Response response = await _dio.post(
-      url,
-      data: request.toJson(),
-      options: Options(
-        headers: _headers,
-      ),
-    );
+    try {
+      Response response = await _dio.post(
+        url,
+        data: request.toJson(),
+        options: Options(
+          headers: _headers,
+        ),
+      );
 
-    return Completion.fromJson(response.data);
+      return Completion.fromMap(response.data);
+    } on DioError {
+      return null;
+    }
   }
 
   /// Method to generate the image(s) based on the given

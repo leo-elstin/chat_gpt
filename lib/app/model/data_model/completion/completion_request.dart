@@ -1,16 +1,3 @@
-import 'dart:convert';
-
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'completion_request.freezed.dart';
-part 'completion_request.g.dart';
-
-CompletionRequest? completionRequestFromJson(String str) =>
-    CompletionRequest.fromJson(json.decode(str));
-
-String completionRequestToJson(CompletionRequest? data) =>
-    json.encode(data!.toJson());
-
 /// Model to use as input for code generation
 ///
 /// [ model ] required, ID of the model to use.
@@ -32,16 +19,30 @@ String completionRequestToJson(CompletionRequest? data) =>
 /// [ temperature ]
 /// What sampling temperature to use. Higher values means the model will take more risks.
 /// Try 0.9 for more creative applications, and 0 (argmax sampling) for ones with a well-defined answer.
-@freezed
-class CompletionRequest with _$CompletionRequest {
-  @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory CompletionRequest({
-    @Default('text-davinci-003') String? model,
-    required String prompt,
-    @Default(0.3) double? temperature,
-    @Default(15) int? maxTokens,
-  }) = _CompletionRequest;
 
-  factory CompletionRequest.fromJson(Map<String, dynamic> json) =>
-      _$CompletionRequestFromJson(json);
+class CompletionRequest {
+  final String? model;
+  final String prompt;
+  final double? temperature;
+  final int? maxTokens;
+  final double? topP;
+  final double? presencePenalty;
+
+  CompletionRequest({
+    this.model = 'text-davinci-003',
+    required this.prompt,
+    this.temperature = 0.3,
+    this.maxTokens = 50,
+    this.topP = 0,
+    this.presencePenalty = 0,
+  });
+
+  Map<String, dynamic> toJson() => {
+        'model': model,
+        'prompt': prompt,
+        'temperature': temperature,
+        'max_tokens': maxTokens,
+        'top_p': topP,
+        'presence_penalty': presencePenalty,
+      };
 }
