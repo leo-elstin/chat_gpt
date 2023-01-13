@@ -8,7 +8,7 @@ The chatGPT SDK written in dart to access the features of the OpenAI APIs
 ## Getting started
 
 ```dart
-chat_gpt:0.0.1
+chat_gpt:1.0.0
 flutter pub get
 ```
 
