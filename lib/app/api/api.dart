@@ -1,4 +1,6 @@
 import 'package:chat_gpt_api/app/chat_gpt.dart';
+import 'package:chat_gpt_api/app/model/data_model/chat/chat_completion.dart';
+import 'package:chat_gpt_api/app/model/data_model/chat/chat_request.dart';
 import 'package:chat_gpt_api/app/model/models.dart';
 import 'package:dio/dio.dart';
 
@@ -26,6 +28,25 @@ class Api {
       );
 
       return Completion.fromMap(response.data);
+    } on DioError {
+      return null;
+    }
+  }
+
+  Future<ChatCompletion?> chatCompletion({
+    required ChatRequest request,
+  }) async {
+    String url = '$_baseUrl/chat/completions';
+    try {
+      Response response = await _dio.post(
+        url,
+        data: request.toJson(),
+        options: Options(
+          headers: _headers,
+        ),
+      );
+
+      return ChatCompletion.fromMap(response.data);
     } on DioError {
       return null;
     }
