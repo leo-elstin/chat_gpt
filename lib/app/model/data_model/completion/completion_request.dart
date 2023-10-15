@@ -27,6 +27,8 @@ class CompletionRequest {
   final int? maxTokens;
   final double? topP;
   final double? presencePenalty;
+  final List<String>? stop;
+  final int? n;
 
   CompletionRequest({
     this.model = 'text-davinci-003',
@@ -35,6 +37,8 @@ class CompletionRequest {
     this.maxTokens = 50,
     this.topP = 0,
     this.presencePenalty = 0,
+    this.stop,
+    this.n,
   });
 
   Map<String, dynamic> toJson() => {
@@ -44,5 +48,7 @@ class CompletionRequest {
         'max_tokens': maxTokens,
         'top_p': topP,
         'presence_penalty': presencePenalty,
+        'stop': stop,
+        'n': n ?? 1,
       };
 }
