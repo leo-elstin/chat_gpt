@@ -26,7 +26,7 @@ class Api {
       );
 
       return Completion.fromMap(response.data);
-    } on DioError {
+    } on DioException {
       return null;
     }
   }
