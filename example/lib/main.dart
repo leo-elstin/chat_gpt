@@ -43,7 +43,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final chatGpt = ChatGPT.builder(
     token:
-    '<TOKEN>', // generate token from https://beta.openai.com/account/api-keys
+        '<TOKEN>', // generate token from https://beta.openai.com/account/api-keys
   );
 
   void textCompletion() async {
