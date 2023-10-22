@@ -44,6 +44,11 @@ class ChatGPT {
     return await Api().textCompletion(request: request);
   }
 
+  Stream<Completion> completionStream({required CompletionRequest request}) {
+    Stream<Completion>? stream = Api().completionStream(request: request);
+    return stream!;
+  }
+
   /// Image Generation
   ///
   /// https://beta.openai.com/docs/guides/images/image-generation-beta

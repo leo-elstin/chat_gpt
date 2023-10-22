@@ -23,9 +23,11 @@ class Completion {
       object: json['object'],
       created: json['created'],
       model: json['model'],
-      usage: Usage.fromMap(
-        json['usage'],
-      ),
+      usage: json['usage'] == null
+          ? null
+          : Usage.fromMap(
+              json['usage'],
+            ),
       choices: List<Choice>.from(
         json["choices"].map((x) => Choice.fromMap(x)),
       ),
