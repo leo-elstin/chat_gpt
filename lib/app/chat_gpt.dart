@@ -1,4 +1,6 @@
 import 'package:chat_gpt_api/app/api/api.dart';
+import 'package:chat_gpt_api/app/model/data_model/chat/chat_completion.dart';
+import 'package:chat_gpt_api/app/model/data_model/chat/chat_request.dart';
 import 'package:chat_gpt_api/app/model/data_model/completion/completion.dart';
 import 'package:chat_gpt_api/app/model/data_model/completion/completion_request.dart';
 import 'package:chat_gpt_api/app/model/data_model/image/image_request.dart';
@@ -47,6 +49,12 @@ class ChatGPT {
   Stream<Completion> completionStream({required CompletionRequest request}) {
     Stream<Completion>? stream = Api().completionStream(request: request);
     return stream!;
+  }
+
+  Future<ChatCompletion?> chatCompletion({
+    required ChatRequest request,
+  }) async {
+    return await Api().chatCompletion(request: request);
   }
 
   /// Image Generation

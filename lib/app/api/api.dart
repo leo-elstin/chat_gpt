@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:chat_gpt_api/app/chat_gpt.dart';
+import 'package:chat_gpt_api/app/model/data_model/chat/chat_completion.dart';
+import 'package:chat_gpt_api/app/model/data_model/chat/chat_request.dart';
 import 'package:chat_gpt_api/app/model/models.dart';
 import 'package:dio/dio.dart';
 
@@ -45,78 +47,20 @@ class Api {
     }
   }
 
-  /// Method to do text completion based on the given
-  ///
-  /// input prompt
-  /// [request] is a required parameter
-  /// the return type can be null
-  ///
-  // Future<Stream?> completionStream({
-  //   required CompletionRequest request,
-  // }) async {
-  //   String url = '$_baseUrl/completions';
-  //   try {
-  //     var promptRequest = request.toJson();
-  //     promptRequest.putIfAbsent('stream', () => true);
-  //
-  //     Response response = await _dio.post(
-  //       url,
-  //       data: promptRequest,
-  //       options: Options(
-  //         headers: _headers,
-  //         responseType: ResponseType.stream,
-  //       ),
-  //     );
-  //
-  //     return response.data.stream;
-  //   } on DioError {
-  //     return null;
-  //   }
-  // }
-
-  /// Method to do text completion based on the given
-  ///
-  /// input prompt
-  /// [request] is a required parameter
-  /// the return type can be null
-  ///
-  Stream<Completion>? completionStream({
-    required CompletionRequest request,
-  }) {
-    String url = '$_baseUrl/completions';
+  Future<ChatCompletion?> chatCompletion({
+    required ChatRequest request,
+  }) async {
+    String url = '$_baseUrl/chat/completions';
     try {
-      var promptRequest = request.toJson();
-      promptRequest.putIfAbsent('stream', () => true);
-
-      _dio
-          .post(
+      Response response = await _dio.post(
         url,
-        data: promptRequest,
+        data: request.toJson(),
         options: Options(
           headers: _headers,
-          responseType: ResponseType.stream,
         ),
-      )
-          .then((value) {
-        _controller.sink.addStream(value.data.stream);
-      });
+      );
 
-      // stream.listen((rawString) {
-      //   print(rawString);
-      //   String data = utf8.decode(rawString.data);
-      //   if (data.startsWith('data:')) {
-      //     data = data.substring(6);
-      //     if (data.startsWith('[DONE]')) {
-      //     } else {
-      //       Completion completion = Completion.fromMap(jsonDecode(data));
-      //       _controller
-      //         ..sink
-      //         ..add(completion);
-      //     }
-      //   }
-      // });
-
-      return _controller.stream;
+      return ChatCompletion.fromMap(response.data);
     } on DioError {
       return null;
     }
