@@ -2,19 +2,20 @@
 The chatGPT SDK written in dart to access the features of the OpenAI APIs
 ## Features
 1. Text Completion
-2. Code Generation
-3. Image Generation
+2. Chat Completion
+3. Code Generation
+4. Image Generation
 
 ## Getting started
 
 ```dart
-chat_gpt:1.0.0
+chat_gpt: 2.0.0
 flutter pub get
 ```
 
 ## Usage
 
-Create an instanse of the ChatGPT
+Create an instance of the ChatGPT
 
 ```
 final chatGpt = ChatGPT.builder( token: '<token>');
@@ -29,7 +30,7 @@ More details : https://beta.openai.com/docs/guides/completion
 How to write the prompts
 https://beta.openai.com/docs/guides/completion/prompt-design
 
-Method to do code completeion / code completion
+Method to do code completion / code completion
 
 ```
     const prompt = "Explain Quantum Computing in simple terms";
